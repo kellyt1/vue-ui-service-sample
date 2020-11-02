@@ -1,0 +1,178 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="MakePayment">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element  minOccurs="1" maxOccurs="1" name="PaymentDetails">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="1" maxOccurs="1" name="productCode">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="GenericPayment"/>
+										<xs:enumeration value="License-CANNABIS"/>
+										<xs:enumeration value="License-LAB"/>
+										<xs:enumeration value="LicenseRenewal"/>
+										<xs:enumeration value="LicenseRenewal-HCL"/>
+										<xs:enumeration value="LicenseRenewal-LC"/>
+										<xs:enumeration value="LicenseRenewal-MS"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element minOccurs="1" maxOccurs="1" name="billerId">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="AUD"/>
+										<xs:enumeration value="EAS"/>
+										<xs:enumeration value="EHL"/>
+										<xs:enumeration value="HCL"/>
+										<xs:enumeration value="HID"/>
+										<xs:enumeration value="HOP"/>
+										<xs:enumeration value="INT"/>
+										<xs:enumeration value="LAB"/>
+										<xs:enumeration value="MOR"/>
+										<xs:enumeration value="OMC"/>
+										<xs:enumeration value="PQE"/>
+										<xs:enumeration value="SLP"/>
+										<xs:enumeration value="TS2"/>
+										<xs:enumeration value="TST"/>
+										<xs:enumeration value="WEL"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element minOccurs="1" maxOccurs="1" name="billerGroupId">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="MDH"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element minOccurs="1" maxOccurs="1" name="amountDue">
+								<xs:simpleType>
+									<xs:restriction base="xs:decimal">
+										<xs:fractionDigits value="2"/>
+										<xs:minInclusive value="0"/>
+										<xs:maxInclusive value="99999999.99"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element minOccurs="1" name="Itemkeys">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element minOccurs="1" maxOccurs="unbounded" name="Itemkey">
+											<xs:complexType>
+												<xs:attribute name="sequence">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="01"/>
+															<xs:enumeration value="02"/>
+															<xs:enumeration value="03"/>
+															<xs:enumeration value="04"/>
+															<xs:enumeration value="05"/>
+															<xs:enumeration value="06"/>
+															<xs:enumeration value="07"/>
+															<xs:enumeration value="08"/>
+															<xs:enumeration value="09"/>
+															<xs:enumeration value="10"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="amount">
+													<xs:simpleType>
+														<xs:restriction base="xs:decimal">
+															<xs:fractionDigits value="2"/>
+															<xs:minInclusive value="0"/>
+															<xs:maxInclusive value="99999999.99"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="value" type="xs:string" use="optional" />
+												<xs:attribute name="speedchart" type="xs:string" use="optional" />
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element minOccurs="0" maxOccurs="1" name="paymentMethod">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="Credit Card"/>
+										<xs:enumeration value="ACH"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element minOccurs="0" maxOccurs="1" name="paymentType">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="Single"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element minOccurs="0" maxOccurs="1" name="TransactionID">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="50"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element minOccurs="0" maxOccurs="1" name="billerPayorId">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="25"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<!-- "yyyy-MM-dd"-->
+							<xs:element minOccurs="0" maxOccurs="1" type="xs:date" name="dueDate"/>
+							<xs:element minOccurs="0" maxOccurs="1" name="returnURL">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="256"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element minOccurs="0" maxOccurs="1" type="xs:string" name="firstName" />
+							<xs:element minOccurs="0" maxOccurs="1" type="xs:string" name="lastName" />
+							<xs:element minOccurs="0" maxOccurs="1" type="xs:string" name="companyName" />
+							<xs:element minOccurs="0" maxOccurs="1" name="emailAddress">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="256"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element minOccurs="0" maxOccurs="1" type="xs:string" name="phoneNumber" />
+							<xs:element minOccurs="0" maxOccurs="1" type="xs:string" name="streetAddress1" />
+							<xs:element minOccurs="0" maxOccurs="1" type="xs:string" name="streetAddress2" />
+							<xs:element minOccurs="0" maxOccurs="1" type="xs:string" name="city" />
+							<xs:element minOccurs="0" maxOccurs="1" type="xs:string" name="stateRegion" />
+							<xs:element minOccurs="0" maxOccurs="1" type="xs:string" name="zipPostalcode" />
+							<xs:element minOccurs="0" maxOccurs="1" type="xs:string" name="countryCode" />
+							<xs:element minOccurs="0" maxOccurs="1" type="xs:string" name="billerUserId"/>
+							<xs:element minOccurs="0" maxOccurs="1" type="xs:string" name="password"/>
+							<xs:element minOccurs="0" maxOccurs="unbounded" name="Parameter">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element minOccurs="1" maxOccurs="1" name="ParameterName">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="26"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element minOccurs="1" maxOccurs="1" name="ParameterValue">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="80"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

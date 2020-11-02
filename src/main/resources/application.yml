@@ -1,0 +1,52 @@
+server:
+  port: 8080
+  error:
+    include-stacktrace: never
+
+spring:
+  main:
+    banner-mode: off
+    allow-bean-definition-overriding: true
+  profiles:
+    active: nonprod
+
+  datasource:
+    url: jdbc-secretsmanager:postgresql://bodyart.cyznv5hu7wjv.us-east-2.rds.amazonaws.com:5432/bodyart
+    username: bodyart/rds_user
+    driver-class-name: com.amazonaws.secretsmanager.sql.AWSSecretsManagerPostgreSQLDriver
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+info:
+  environment: local
+
+keycloak:
+  auth-server-url: https://authenticator4.nonprod.health.state.mn.us/auth
+  ssl-required: none
+  realm: hrd-realm
+  resource: bodyart-app
+  bearer-only: true
+  confidential-port: 0
+  use-resource-role-mappings: false
+  principal-attribute: preferred_username
+  cors: true
+
+attachments:
+  bucket-name: hrd-body-art-nonprod
+
+# payment gateway - add to secrets manager
+idam:
+  url: http://localhost:9000
+  clientid: bodyart
+  username: gateway
+  client:
+      secret: password
+
+makepayment:
+  endpoint: https://messaging.nonprod.health.state.mn.us/finance/epayment/makepayment
+base:
+  url: https://bodyart.nonprod.health.state.mn.us

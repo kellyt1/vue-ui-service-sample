@@ -1,0 +1,18 @@
+info:
+  environment: prod
+
+datasources:
+  default:
+    url: jdbc-secretsmanager:postgresql://bodyart.TODO.us-east-2.rds.amazonaws.com:5432/vacancy
+
+keycloak:
+  base-url: https://authenticator4.web.health.state.mn.us
+
+notifications:
+  base-url: https://bodyart.web.health.state.mn.us
+  production: true
+  smtp-host: mail.web.health.state.mn.us
+  smtp-port: 25
+
+attachments:
+  bucket-name: mdh-hrd-bodyart-prod
